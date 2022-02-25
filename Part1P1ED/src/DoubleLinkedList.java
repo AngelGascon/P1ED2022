@@ -1,7 +1,7 @@
 import java.lang.Iterable;
 import java.util.Iterator;
 
-public class DoubleLinkedList<T> implements TADdLinkedList<T>, Iterable<T> {
+public class DoubleLinkedList<T extends Comparable<T>> implements TADList<T>, Iterable<T> {
 
     private int size;
     private DoubleLinkedListNode head, tail;
@@ -13,7 +13,7 @@ public class DoubleLinkedList<T> implements TADdLinkedList<T>, Iterable<T> {
     @Override
     public Iterator<T> iterator() { return new DllIterator(head); }
 
-    private class DllIterator implements Iterator<T>{
+    protected class DllIterator implements Iterator<T>{
 
         protected DoubleLinkedListNode current;
 
@@ -28,15 +28,14 @@ public class DoubleLinkedList<T> implements TADdLinkedList<T>, Iterable<T> {
 
         @Override
         public T next() {
-            T info = current.getInfo();
             current = current.next;
-            return info;
+            return current.getInfo();
         }
 
         public DoubleLinkedListNode getCurrent(){ return current; }
     }
 
-    private class DoubleLinkedListNode implements Comparable<T> {
+    protected class DoubleLinkedListNode {
 
         protected DoubleLinkedListNode prev, next;
         protected T info;
@@ -48,13 +47,6 @@ public class DoubleLinkedList<T> implements TADdLinkedList<T>, Iterable<T> {
         }
 
         public T getInfo() { return info; }
-
-        @Override
-        public int compareTo(T o) {
-            // returns a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
-            // Using compareTo defined in java.lang.String, viable to look for elements that are equal
-            return (info.toString().compareTo(o.toString()));
-        }
     }
 
     @Override
@@ -118,14 +110,14 @@ public class DoubleLinkedList<T> implements TADdLinkedList<T>, Iterable<T> {
     }
 
     @Override
-    public int search(T elem) {
+    public int search (T elem) {
         DllIterator it = new DllIterator(head);
         int aux = 0;
         boolean found = false;
 
         while (it.hasNext() && !found){
-            it.next(); aux++;
-            if(it.getCurrent().compareTo(elem)==0) found =true;//TODO needs to start comparing after it.next(), first iteration is head and throws nullPointerException
+            if(elem.compareTo(it.next())==0) found =true;
+            aux++;
         }
         return aux;
     }

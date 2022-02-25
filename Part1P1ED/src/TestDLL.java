@@ -2,21 +2,26 @@ import java.util.Iterator;
 
 public class TestDLL {
     public static void main(String[] args) {
-        DoubleLinkedList<Integer> provaLinked = new DoubleLinkedList<>();
+        DoubleLinkedList<Citizen> provLinked = new DoubleLinkedList<>();
+        Citizen num1 = new Citizen("Maria", "Garcia", "334");
+        Citizen num2 = new Citizen("Alvaro", "Martin", "124");
+        Citizen num3 = new Citizen("Alfred", "Tomas", "204");
+        Citizen num4 = new Citizen("Marta", "Vent", "112");
 
-        provaLinked.add(22);
-        provaLinked.add(30);
-        provaLinked.add(31);
-        provaLinked.add(32);
-        provaLinked.add(6, 33);
-        provaLinked.create();
-        System.out.println(".get test: " + provaLinked.get(3));
-        System.out.println(".lon test: " + provaLinked.lon());
-        provaLinked.delete(3);
-        System.out.println(".lon test2: " + provaLinked.lon());
-        System.out.println(".search test: " + provaLinked.search(33));
+        provLinked.add(num1);
+        provLinked.add(num2);
+        provLinked.add(num3);
+        provLinked.add(num4);
+        provLinked.add(3, num1);
 
-        Iterator itLinked = provaLinked.iterator();
+        System.out.println(".get test: " + provLinked.get(3));
+        System.out.println(".lon test: " + provLinked.lon());
+        provLinked.delete(3);
+        System.out.println(".lon test2: " + provLinked.lon());
+        System.out.println(".search test: " + provLinked.search(num2));
+
+        System.out.println("\nCurrent List: ");
+        Iterator itLinked = provLinked.iterator();
         while (itLinked.hasNext()){
             System.out.println(itLinked.next());
         }

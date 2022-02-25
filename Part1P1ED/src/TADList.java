@@ -4,7 +4,7 @@
  * @author : angel.gascon@estudiants.urv.cat
  *
  */
-public interface TADdLinkedList<T> {
+public interface TADList<T> {
 
     /**
      * Initialize List
@@ -52,5 +52,5 @@ public interface TADdLinkedList<T> {
      * @param elem T
      * @return int
      */
-    int search(T elem);
+    int search (T elem);
 }
