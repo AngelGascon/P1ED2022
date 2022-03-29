@@ -20,10 +20,8 @@ public class TestDLL {
         System.out.println(".lon test2: " + provLinked.lon());
         System.out.println(".search test: " + provLinked.search(num2));
 
-        System.out.println("\nCurrent List: ");
-        Iterator itLinked = provLinked.iterator();
-        while (itLinked.hasNext()){
-            System.out.println(itLinked.next());
+        for (Citizen x:provLinked) {
+            System.out.println(x);
         }
     }
 }

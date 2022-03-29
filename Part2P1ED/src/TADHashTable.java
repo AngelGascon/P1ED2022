@@ -46,14 +46,21 @@ public interface TADHashTable<K,T> {
      */
     void delete(K key);
 
-    /*
-    Llista<T> ObbtenirValors();
-        - Retorna una llista amb tots els valors de la taula
+    /**
+     * returns values of the table
+     * @return values list
+     */
+    TADList<T> getValues();
 
-    Llista<K> ObtenirClaus();
-        - Retorna una llista amb tots les claus de la taula
+    /**
+     * returns keys of the table
+     * @return keys list
+     */
+    TADList<K> getKeys();
 
-    Float ObtenirFactorDeCàrrega();
-        - Retorna el factor de càrrega actual
-    */
+    /**
+     * returns current load factor
+     * @return LoadFactor
+     */
+    float getLoadFactor();
 }

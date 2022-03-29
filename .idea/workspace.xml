@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5629c473-dfda-45a6-a387-f59ac7b1df02" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Part2P1ED/src/DoubleLinkedList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Part2P1ED/src/TADList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part1P1ED/Part1P1ED.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part1P1ED/out/production/Part1P1ED/TestDLL.class" beforeDir="false" afterPath="$PROJECT_DIR$/Part1P1ED/out/production/Part1P1ED/TestDLL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part1P1ED/src/TADList.java" beforeDir="false" afterPath="$PROJECT_DIR$/Part1P1ED/src/TADList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part1P1ED/src/TestDLL.java" beforeDir="false" afterPath="$PROJECT_DIR$/Part1P1ED/src/TestDLL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part2P1ED/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Part2P1ED/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part2P1ED/Part2P1ED.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="273XqEWPTcF2QAyyr2AFJnOyMEq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Part2P1ED" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5629c473-dfda-45a6-a387-f59ac7b1df02" name="Changes" comment="" />
+      <created>1648549932004</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1648549932004</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
