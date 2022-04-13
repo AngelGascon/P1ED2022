@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eaeb7f70-2dcd-4d51-bdd1-c00f588cd5f5" name="Changes" comment="First commit Part2">
-      <change afterPath="$PROJECT_DIR$/../.idea/P1ED2022.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DoubleLinkedList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TADList.java" afterDir="false" />
+    <list default="true" id="eaeb7f70-2dcd-4d51-bdd1-c00f588cd5f5" name="Changes" comment="Part2 Init HashTable">
+      <change afterPath="$PROJECT_DIR$/../Part1P1ED/src/DoubleLinkedListNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DoubleLinkedListNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/HashNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/StaticTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Part1P1ED/out/production/Part1P1ED/Citizen.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Part1P1ED/out/production/Part1P1ED/Citizen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Part1P1ED/out/production/Part1P1ED/DoubleLinkedList$DllIterator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Part1P1ED/out/production/Part1P1ED/DoubleLinkedList$DllIterator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Part1P1ED/out/production/Part1P1ED/DoubleLinkedList$DoubleLinkedListNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Part1P1ED/out/production/Part1P1ED/DoubleLinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Part1P1ED/out/production/Part1P1ED/DoubleLinkedList.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Part1P1ED/out/production/Part1P1ED/TestDLL.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Part1P1ED/out/production/Part1P1ED/TestDLL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Part1P1ED/src/TADList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Part1P1ED/src/TADList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Part1P1ED/src/Citizen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Part1P1ED/src/Citizen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Part1P1ED/src/DoubleLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Part1P1ED/src/DoubleLinkedList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Part1P1ED/src/TestDLL.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Part1P1ED/src/TestDLL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Part2P1ED/Citizen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Part2P1ED/Citizen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Part2P1ED/DoubleLinkedList$DllIterator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Part2P1ED/DoubleLinkedList$DllIterator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Part2P1ED/DoubleLinkedList$DoubleLinkedListNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Part2P1ED/DoubleLinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Part2P1ED/DoubleLinkedList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Part2P1ED/HashTable$HashNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Part2P1ED/HashTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Part2P1ED/HashTable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Part2P1ED/TestHashList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Part2P1ED/TestHashList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Citizen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Citizen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DoubleLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DoubleLinkedList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HashTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HashTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TADHashTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TADHashTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TestHashList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestHashList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +34,13 @@
   </component>
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -38,6 +52,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/DoubleLinkedList.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -84,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645816726271</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Part2 Init HashTable">
+      <created>1648591962162</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1648591962162</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -101,22 +125,30 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit Part2" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit Part2" />
+    <MESSAGE value="Part2 Init HashTable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Part2 Init HashTable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/TestHashList.java</url>
-          <line>3</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/HashTable.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="2" />
+          <line>22</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="StaticTable" memberName="lastElem" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((HashTable)((HashNode)((HashTable)((HashNode)((HashNode)((HashTable)testTable.table.get(0).this$0).table.get(0)).next).this$0).table.get(8)).this$0).table.get(9)" custom="HashTable,HashTable.HashNode" />
+        <watch expression="((HashTable)((HashNode)((HashTable)((HashNode)((HashNode)((HashTable)testTable.table.get(0).this$0).table.get(0)).next).this$0).table.get(8)).this$0).table.get(9)" custom="HashTable,HashTable.HashNode" />
+        <watch expression="testTable" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

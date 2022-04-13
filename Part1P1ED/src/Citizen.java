@@ -1,3 +1,6 @@
+/**
+ * Aux class used to do the testing
+ */
 public class Citizen implements Comparable<Citizen>{
 
     private String name, secName, id;
@@ -21,5 +24,4 @@ public class Citizen implements Comparable<Citizen>{
 
     @Override
     public int compareTo(Citizen o) { return this.id.compareTo(o.getId()); }
-
 }

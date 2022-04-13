@@ -1,5 +1,3 @@
-import java.util.Iterator;
-
 public class TestDLL {
     public static void main(String[] args) {
         DoubleLinkedList<Citizen> provLinked = new DoubleLinkedList<>();

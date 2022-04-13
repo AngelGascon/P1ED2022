@@ -1,10 +1,15 @@
 import java.lang.Iterable;
 import java.util.Iterator;
 
+/**
+ * Double Linked List class defined using TADList and aux class DoubleLinkedList for its nodes
+ * @author angel.gascon@estudiants.urv.cat
+ * @param <T> info of the nodes
+ */
 public class DoubleLinkedList<T extends Comparable<T>> implements TADList<T>, Iterable<T> {
 
     private int size;
-    private DoubleLinkedListNode head, tail;
+    private DoubleLinkedListNode<T> head, tail;
 
     public DoubleLinkedList(){
         create();
@@ -15,9 +20,9 @@ public class DoubleLinkedList<T extends Comparable<T>> implements TADList<T>, It
 
     protected class DllIterator implements Iterator<T>{
 
-        protected DoubleLinkedListNode current;
+        protected DoubleLinkedListNode<T> current;
 
-        public DllIterator(DoubleLinkedListNode name){
+        public DllIterator(DoubleLinkedListNode<T> name){
             current = name;
         }
 
@@ -32,33 +37,19 @@ public class DoubleLinkedList<T extends Comparable<T>> implements TADList<T>, It
             return current.getInfo();
         }
 
-        public DoubleLinkedListNode getCurrent(){ return current; }
-    }
-
-    protected class DoubleLinkedListNode {
-
-        protected DoubleLinkedListNode prev, next;
-        protected T info;
-
-        DoubleLinkedListNode(T info){
-            this.info = info;
-            prev = null;
-            next = null;
-        }
-
-        public T getInfo() { return info; }
+        public DoubleLinkedListNode<T> getCurrent(){ return current; }
     }
 
     @Override
     public void create() {
         size = 0;
-        head = new DoubleLinkedListNode(null);
-        tail = new DoubleLinkedListNode(null);
+        head = new DoubleLinkedListNode<>(null);
+        tail = new DoubleLinkedListNode<>(null);
     }
 
     @Override
     public void add(T elem) {
-        DoubleLinkedListNode aux = new DoubleLinkedListNode(elem);
+        DoubleLinkedListNode<T> aux = new DoubleLinkedListNode<>(elem);
         if(size == 0){
             head.next = aux;
             aux.prev = head;
@@ -74,8 +65,8 @@ public class DoubleLinkedList<T extends Comparable<T>> implements TADList<T>, It
     @Override
     public void add(int pos, T elem) {
         try{
-            DoubleLinkedListNode inAux = new DoubleLinkedListNode(elem);
-            DoubleLinkedListNode itAux = this.getListNode(pos);
+            DoubleLinkedListNode<T> inAux = new DoubleLinkedListNode<>(elem);
+            DoubleLinkedListNode<T> itAux = this.getListNode(pos);
             //Adding new node pointers
             inAux.next = itAux;
             inAux.prev = itAux.prev;
@@ -100,7 +91,7 @@ public class DoubleLinkedList<T extends Comparable<T>> implements TADList<T>, It
     @Override
     public void delete(int pos) {
         try {
-            DoubleLinkedListNode aux = this.getListNode(pos);
+            DoubleLinkedListNode<T> aux = this.getListNode(pos);
             aux.prev.next = aux.next;
             aux.next.prev = aux.prev;
             size--;
@@ -126,9 +117,9 @@ public class DoubleLinkedList<T extends Comparable<T>> implements TADList<T>, It
      * Returns node reference at the specified position.
      * If pos > than current number of nodes, returns tail reference.
      * @param pos int
-     * @return DoubleLinkedListNode
+     * @return DoubleLinkedListNode<T>
      */
-    private DoubleLinkedListNode getListNode(int pos){
+    private DoubleLinkedListNode<T> getListNode(int pos){
         DllIterator it = new DllIterator(head);
         int aux = 0;
         while (it.hasNext() && aux <= pos){ it.next(); aux++; }
