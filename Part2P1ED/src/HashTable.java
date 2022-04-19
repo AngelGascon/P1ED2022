@@ -1,3 +1,9 @@
+/**
+ * HashTable class defined using TADHashTable and aux class HashNode for its nodes and StaticTable for its pointers to HashNode
+ * @author angel.gascon@estudiants.urv.cat
+ * @param <K> keys
+ * @param <T> stored info
+ */
 public class HashTable <K extends Comparable<K>, T extends Comparable<T>> implements TADHashTable<K,T> {
 
     private float nElems;
@@ -56,9 +62,9 @@ public class HashTable <K extends Comparable<K>, T extends Comparable<T>> implem
             if(currentNode.next == null) throw new NullPointerException();
             return numChecks;
         }catch (NullPointerException e) {
-            System.out.println("Node K: "+ elem +" does not exist, error code -1");
+            System.out.println("Node K: "+ elem +" does not exist, error code 0");
         }
-        return -1;
+        return 0;
     }
 
     @Override
@@ -117,11 +123,19 @@ public class HashTable <K extends Comparable<K>, T extends Comparable<T>> implem
         return nElems/table.lon();
     }
 
+    /**
+     * Generates hashcode
+     * @param key key that generates hashcode
+     * @return hashcode
+     */
     private int hashcode(K key){ return (Math.abs(key.hashCode())) % table.lon(); }
 
+    /**
+     * Re sizes HashTable when loadFactor>0.75
+     */
     private void newSize(){
         //Re sized table init
-        StaticTable<HashNode<K,T>> aux = new StaticTable<>(table.lon()*2);
+        StaticTable<HashNode<K,T>> aux = new StaticTable<>(table.lon()*10);
         for(int i=0;i<aux.lon();i++){
             HashNode<K, T> nullNode = new HashNode<>(null, null);
             aux.add(nullNode);

@@ -105,12 +105,16 @@ public class DoubleLinkedList<T extends Comparable<T>> implements TADList<T>, It
         DllIterator it = new DllIterator(head);
         int aux = 0;
         boolean found = false;
-
-        while (it.hasNext() && !found){
-            if(elem.compareTo(it.next())==0) found =true;
-            aux++;
+        try{
+            while (it.hasNext() && !found){
+                if(elem.compareTo(it.next())==0) found =true;
+                aux++;
+            }
+            return aux;
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            return 0;
         }
-        return aux;
     }
 
     /**
