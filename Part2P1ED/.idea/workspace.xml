@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eaeb7f70-2dcd-4d51-bdd1-c00f588cd5f5" name="Changes" comment="Testing">
-      <change afterPath="$PROJECT_DIR$/src/TestSearch.java" afterDir="false" />
+    <list default="true" id="eaeb7f70-2dcd-4d51-bdd1-c00f588cd5f5" name="Changes" comment="Testing search finished">
+      <change afterPath="$PROJECT_DIR$/../P2ED/src/GrafGenèric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P2ED/src/NodeGenèric.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P2ED/src/TADGraf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../P2ED/src/Testing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DoubleLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DoubleLinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HashNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HashNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HashTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HashTable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +50,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../P2ED" />
   </component>
   <component name="RunManager" selected="Application.TestSearch">
     <configuration name="TestHashList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -104,7 +104,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649847933266</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Testing search finished">
+      <created>1650356594551</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1650356594551</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Testing search finished">
+      <created>1650356655979</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1650356655979</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -126,18 +140,10 @@
     <MESSAGE value="First commit Part2" />
     <MESSAGE value="Part2 Init HashTable" />
     <MESSAGE value="P2 Finished, needs testing and documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="P2 Finished, needs testing and documentation" />
+    <MESSAGE value="Testing search finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing search finished" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/TestSearch.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="StaticTable" memberName="lastElem" />
