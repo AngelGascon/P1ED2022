@@ -86,4 +86,23 @@ public class Estacio {
     public double getLongitud() {
         return longitud;
     }
+
+    @Override
+    public String toString() {
+        return "Estacio{" +
+                "id=" + id +
+                ", idEstacio='" + idEstacio + '\'' +
+                ", nom='" + nom + '\'' +
+                ", data='" + data + '\'' +
+                ", consum='" + consum + '\'' +
+                ", carrer='" + carrer + '\'' +
+                ", ciutat='" + ciutat + '\'' +
+                ", estat='" + estat + '\'' +
+                ", temps='" + temps + '\'' +
+                ", potencia='" + potencia + '\'' +
+                ", tipus='" + tipus + '\'' +
+                ", latitud=" + latitud +
+                ", longitud=" + longitud +
+                '}';
+    }
 }

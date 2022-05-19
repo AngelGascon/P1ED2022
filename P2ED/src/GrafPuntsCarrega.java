@@ -1,21 +1,20 @@
 import java.util.*;
 
-public class GrafGeneric<K,V,E> implements TADGraf<K,V,E>{
+public class GrafPuntsCarrega<K,E> implements TADGrafPuntsCarrega<K,E> {
+    private Hashtable<K, NodePuntsCarrega<K,E>> hashtable;
 
-    private Hashtable<K, Node<K,V,E>> hashtable;
-
-    GrafGeneric(){
+    GrafPuntsCarrega(){
         crearGraf();
     }
 
-    public void afegirNode(K k, Node<K,V,E> nodeNou){ hashtable.put(k, nodeNou); }
-    public Node<K,V,E> getHashValue(K k){ return hashtable.get(k); }
+    public void afegirNode(K k, NodePuntsCarrega<K,E> nodeNou){ hashtable.put(k, nodeNou); }
+    public NodePuntsCarrega<K,E> getHashValue(K k){ return hashtable.get(k); }
 
     @Override
     public void crearGraf() { hashtable = new Hashtable<>(); }
 
     @Override
-    public void afegirAresta(Node<K,V,E> v1, Node<K,V,E> v2, E e) {
+    public void afegirAresta(NodePuntsCarrega<K,E> v1, NodePuntsCarrega<K,E> v2, E e) {
         Aresta<K,E> novArestaCol = new Aresta<>(e);
         //Aresta<K,E> novArestaFil = new Aresta<>(e);
         if(v1.primeraFila==null){
@@ -38,7 +37,7 @@ public class GrafGeneric<K,V,E> implements TADGraf<K,V,E>{
     }
 
     @Override
-    public boolean existeixAresta(Node<K,V,E> v1, Node<K,V,E> v2) {
+    public boolean existeixAresta(NodePuntsCarrega<K,E> v1, NodePuntsCarrega<K,E> v2) {
         boolean trobat = false;
         Aresta<K,E> aux;
         if((Integer)v1.ref < (Integer)v2.ref){
@@ -64,7 +63,7 @@ public class GrafGeneric<K,V,E> implements TADGraf<K,V,E>{
     }
 
     @Override
-    public E valorAresta(Node<K,V,E> v1, Node<K,V,E> v2) {
+    public E valorAresta(NodePuntsCarrega<K,E> v1, NodePuntsCarrega<K,E> v2) {
         E value = null;
         Aresta<K,E> aux;
         if((Integer)v1.ref < (Integer)v2.ref){
@@ -84,8 +83,8 @@ public class GrafGeneric<K,V,E> implements TADGraf<K,V,E>{
     }
 
     @Override
-    public List<Node<K,V,E>> adjacents(Node<K,V,E> v) {
-        List<Node<K,V,E>> value = new LinkedList<>();
+    public List<NodePuntsCarrega<K,E>> adjacents(NodePuntsCarrega<K,E> v) {
+        List<NodePuntsCarrega<K,E>> value = new LinkedList<>();
         Aresta<K,E> aux;
         aux = v.primeraFila;
         while (aux!=null){ value.add(this.getHashValue(aux.refCol)); aux = aux.segFila; }
@@ -101,7 +100,7 @@ public class GrafGeneric<K,V,E> implements TADGraf<K,V,E>{
         Hashtable<K, Boolean> visitats = new Hashtable<>();
         Hashtable<K, Double> distancies = new Hashtable<>();
         Hashtable<K,K> camiNodes = new Hashtable<>();
-        //
+        //Dijkstra
         Enumeration<K> e = hashtable.keys();
         // Iterating through the Hashtable
         //Setting elements
@@ -176,16 +175,74 @@ public class GrafGeneric<K,V,E> implements TADGraf<K,V,E>{
         }
 
         //Calcul cami optim
-        ArrayList<String> cami = new ArrayList<>();
-        K aux = identificador_desti;
+        LinkedList<String> cami = new LinkedList<>();
+        double consum = autonomia;
+        K aux = identificador_desti, prev;
+
         while (!aux.equals(identificador_origen)){
-            cami.add(camiNodes.get(aux)+" - "+distancies.get(aux)+" km -> "+aux);
-            aux = camiNodes.get(aux);
+            //cami.addFirst(camiNodes.get(aux)+" - "+distancies.get(aux)+" km -> "+aux);
+            prev = aux;
+            aux = camiNodes.get(aux);//Gets prev Node
+            consum = consum - (Double) valorAresta(hashtable.get(aux), hashtable.get(prev));
+            if(consum<0){
+                cami.addFirst("Requereix recarrega al punt: "+hashtable.get(prev).info.getId());
+                consum = autonomia;
+                cami.addFirst(hashtable.get(aux).info.getId()+"");
+            }else {
+                cami.addFirst(hashtable.get(prev).info.getId()+"");
+                cami.addFirst(hashtable.get(aux).info.getId()+"");
+            }
         }
-        ArrayList<String> camiOrdenat = new ArrayList<>();
-        for (int i = cami.size()-1; i>=0; i--){
-            camiOrdenat.add(cami.get(i));
+
+        return cami;
+    }
+    List<String> zonesDistMaxNoGarantida(K indentificador_origen,
+                                         int autonomia){
+        //Floyd
+        ArrayList<K> identifiers = new ArrayList<>();//Every position is a distance!
+        Enumeration<K> e = hashtable.keys();
+        // Iterating through the Hashtable
+        //Setting elements
+        while (e.hasMoreElements()) {
+            K key = e.nextElement();
+            identifiers.add(key);
         }
-        return camiOrdenat;
+        ///
+        int numNodes = hashtable.size();
+        double[][] distances = new double[numNodes][numNodes];
+        for (int i = 0; i<numNodes; i++) {
+            distances[i][i] = 0;
+        }
+        for (int u = 0; u < numNodes; u++){
+            for(int v = 0; v < numNodes; v++){
+                if(existeixAresta(hashtable.get(identifiers.get(u)), hashtable.get(identifiers.get(v))))
+                    distances[u][v] = (Double) valorAresta(hashtable.get(identifiers.get(u)), hashtable.get(identifiers.get(v)));
+                else
+                    distances[u][v] = Double.MAX_VALUE;//Max distance as marker of no connection
+            }
+        }
+        //O n^3 Floyd
+        for (int k = 0; k < numNodes; k++){
+            for (int i = 0; i < numNodes; i++){
+                for (int j = 0; j < numNodes; j++){
+                    if(distances[i][j]>distances[i][k]+distances[k][j])
+                        distances[i][j] = distances[i][k]+distances[k][j];
+                }
+            }
+        }
+
+        int index = -1;
+        for (K id:identifiers) {
+            if(id.equals(indentificador_origen)){
+                index = identifiers.indexOf(id);
+                break;
+            }
+        }
+        LinkedList<String> distMax = new LinkedList<>();
+        for (int i = 0; i<numNodes; i++){
+            if(distances[index][i]<autonomia && index != i)
+                distMax.addFirst("Id estacio: "+hashtable.get(identifiers.get(i)).info.getId());
+        }
+        return distMax;
     }
 }
