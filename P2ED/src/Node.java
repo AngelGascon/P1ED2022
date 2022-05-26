@@ -1,10 +1,10 @@
-public class Node<K,V,E> {
+public class Node<V, T, E> {
 
-    protected Aresta<K,E> primeraFila, primeraColumna;
-    protected V info;
-    protected K ref;
+    protected Aresta<V,E> primeraFila, primeraColumna;
+    protected T info;
+    protected V ref;
 
-    Node(V info, K ref){
+    Node(V ref, T info){
         this.ref = ref;
         this.info = info;
         primeraFila = null;

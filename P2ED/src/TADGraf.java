@@ -1,6 +1,6 @@
 import java.util.List;
 
-public interface TADGraf<K,V,E> {
+public interface TADGraf<V,E> {
     /**
      * Constructor per inicialitzar la taula.
      */
@@ -13,7 +13,7 @@ public interface TADGraf<K,V,E> {
      * @param v2 node1
      * @param e nova aresta
      */
-    void afegirAresta(Node<K,V,E> v1, Node<K,V,E> v2, E e);
+    void afegirAresta(V v1, V v2, E e);
 
     /**
      * - Funció que ens diu si una aresta existeix.
@@ -21,7 +21,7 @@ public interface TADGraf<K,V,E> {
      * @param v2 node2
      * @return existeix(true) / no existeix(false)
      */
-    boolean existeixAresta(Node<K,V,E> v1, Node<K,V,E> v2);
+    boolean existeixAresta(V v1, V v2);
 
     /**
      * - Funció que retorna el valor d'una aresta.
@@ -30,7 +30,7 @@ public interface TADGraf<K,V,E> {
      * @param v2 node2
      * @return E valor aresta
      */
-    E valorAresta(Node<K,V,E> v1, Node<K,V,E> v2);
+    E valorAresta(V v1, V v2);
 
     /**
      * - Funció que retorna una llista que conté tots els nodes adjacents al node passat per
@@ -39,5 +39,5 @@ public interface TADGraf<K,V,E> {
      * @param v node d'adjacencies
      * @return llista d'adjacencies
      */
-    List<Node<K,V,E>> adjacents(Node<K,V,E> v);
+    List<V> adjacents(V v);
 }

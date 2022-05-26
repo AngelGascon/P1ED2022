@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class Estacio {
     /*
     exemple:
@@ -15,68 +17,29 @@ public class Estacio {
             "latitud": "41.155346",
             "longitud": "1.097065"
      */
-    private int id;
-    private String idEstacio, nom, data, consum, carrer, ciutat, estat, temps, potencia, tipus;
+    private String idEstacio;
+    private LinkedList<Endoll> endolls;
+    private Endoll maxPotencia;
     private double latitud, longitud;
 
     public Estacio(int id, String idEstacio, String nom, String data, String consum, String carrer, String ciutat, String estat, String temps, String potencia, String tipus, double latitud, double longitud) {
-        this.id = id;
         this.idEstacio = idEstacio;
-        this.nom = nom;
-        this.data = data;
-        this.consum = consum;
-        this.carrer = carrer;
-        this.ciutat = ciutat;
-        this.estat = estat;
-        this.temps = temps;
-        this.potencia = potencia;
-        this.tipus = tipus;
         this.latitud = latitud;
         this.longitud = longitud;
+        endolls = new LinkedList<>();
+        maxPotencia = new Endoll(id, nom, data, consum, carrer, ciutat, estat, temps, potencia, tipus);
+        addEndoll(maxPotencia);
     }
 
-    public int getId() {
-        return id;
+    public void addEndoll(Endoll e){
+        endolls.add(e);
+        if(e.getPotencia().compareTo("")==0) e.setPotencia("0");
+        if(Double.parseDouble(maxPotencia.getPotencia())<Double.parseDouble(e.getPotencia()))
+            maxPotencia = e;
     }
 
     public String getIdEstacio() {
         return idEstacio;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public String getConsum() {
-        return consum;
-    }
-
-    public String getCarrer() {
-        return carrer;
-    }
-
-    public String getCiutat() {
-        return ciutat;
-    }
-
-    public String getEstat() {
-        return estat;
-    }
-
-    public String getTemps() {
-        return temps;
-    }
-
-    public String getPotencia() {
-        return potencia;
-    }
-
-    public String getTipus() {
-        return tipus;
     }
 
     public double getLatitud() {
@@ -87,22 +50,7 @@ public class Estacio {
         return longitud;
     }
 
-    @Override
-    public String toString() {
-        return "Estacio{" +
-                "id=" + id +
-                ", idEstacio='" + idEstacio + '\'' +
-                ", nom='" + nom + '\'' +
-                ", data='" + data + '\'' +
-                ", consum='" + consum + '\'' +
-                ", carrer='" + carrer + '\'' +
-                ", ciutat='" + ciutat + '\'' +
-                ", estat='" + estat + '\'' +
-                ", temps='" + temps + '\'' +
-                ", potencia='" + potencia + '\'' +
-                ", tipus='" + tipus + '\'' +
-                ", latitud=" + latitud +
-                ", longitud=" + longitud +
-                '}';
+    public String toString(){
+        return "Estacio: "+idEstacio +" || Endoll: "+ maxPotencia.getId()+" ("+maxPotencia.getPotencia()+"V)";
     }
 }

@@ -1,8 +1,8 @@
-public class Aresta<K,E> {
+public class Aresta<V,E> {
 
-    protected Aresta<K,E> segFila, segCol;
+    protected Aresta<V,E> segFila, segCol;
     protected E infoAresta;
-    protected K refFila, refCol;
+    protected V refFila, refCol;
 
     Aresta(E info){
         infoAresta = info;
@@ -12,7 +12,7 @@ public class Aresta<K,E> {
         refCol = null;
     }
 
-    public void setRefs(Aresta<K,E> segFila, Aresta<K,E>segCol, K refFila, K refCol){
+    public void setRefs(Aresta<V,E> segFila, Aresta<V,E>segCol, V refFila, V refCol){
         this.segFila = segFila;
         this.segCol = segCol;
         this.refCol = refCol;

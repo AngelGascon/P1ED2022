@@ -3,6 +3,7 @@ import org.json.*;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Hashtable;
 
 public class Testing {
     public static void main(String[] args) {
@@ -15,47 +16,57 @@ public class Testing {
         JSONTokener tokener = new JSONTokener(is);
         JSONArray arrayFile = new JSONArray(tokener);
 
-        GrafPuntsCarrega<Integer,Double> grafTest = new GrafPuntsCarrega<>();
-        Estacio novaEstacio;
-        NodePuntsCarrega<Integer, Double> nouNode;
-        NodePuntsCarrega<Integer, Double> nodeDistMin = null;
-        ArrayList<NodePuntsCarrega<Integer, Double>> nodesLlista = new ArrayList<>();
-        double dist, distMin = Double.MAX_VALUE;
+        GrafGeneric<String, Estacio, Double> grafTest = new GrafGeneric<>();
+        Hashtable<String, Estacio> estacions = new Hashtable<>();
+        ArrayList<String> ids = new ArrayList<>();
 
-        //Afegim tots els nodes:estacions
+        //treiem tota la info del .json i creem estacions
         for (Object actual: arrayFile) {
             //Recorre tot el .json -> tot i fer casting a Object tractem en JSONObject
-            novaEstacio = new Estacio(((JSONObject) actual).getInt("id"),((JSONObject) actual).getString("id_estacio"),((JSONObject) actual).getString("nom"),((JSONObject) actual).getString("data"),((JSONObject) actual).getString("consum"),((JSONObject) actual).getString("carrer"),((JSONObject) actual).getString("ciutat"),((JSONObject) actual).getString("estat"),((JSONObject) actual).getString("temps"),((JSONObject) actual).getString("potencia"),((JSONObject) actual).getString("tipus"),((JSONObject) actual).getDouble("latitud"),((JSONObject) actual).getDouble("longitud"));
-            nouNode = new NodePuntsCarrega<>(novaEstacio, novaEstacio.getId());
-            grafTest.afegirNode(novaEstacio.getId(),nouNode);
-            nodesLlista.add(nouNode);
+            if(estacions.containsKey(((JSONObject) actual).getString("id_estacio"))){
+                //if estacio exists -> add endoll
+                estacions.get(((JSONObject) actual).getString("id_estacio")).addEndoll(new Endoll(((JSONObject) actual).getInt("id"),((JSONObject) actual).getString("nom"),((JSONObject) actual).getString("data"),((JSONObject) actual).getString("consum"),((JSONObject) actual).getString("carrer"),((JSONObject) actual).getString("ciutat"),((JSONObject) actual).getString("estat"),((JSONObject) actual).getString("temps"),((JSONObject) actual).getString("potencia"),((JSONObject) actual).getString("tipus")));
+            }else{
+                estacions.put(((JSONObject) actual).getString("id_estacio"), new Estacio(((JSONObject) actual).getInt("id"),((JSONObject) actual).getString("id_estacio"),((JSONObject) actual).getString("nom"),((JSONObject) actual).getString("data"),((JSONObject) actual).getString("consum"),((JSONObject) actual).getString("carrer"),((JSONObject) actual).getString("ciutat"),((JSONObject) actual).getString("estat"),((JSONObject) actual).getString("temps"),((JSONObject) actual).getString("potencia"),((JSONObject) actual).getString("tipus"),((JSONObject) actual).getDouble("latitud"),((JSONObject) actual).getDouble("longitud")));
+                ids.add(((JSONObject) actual).getString("id_estacio"));
+            }
         }
-        ///Rel arestes
-        //Creem les arestes per cada inserció a ser possible
-        for (NodePuntsCarrega<Integer, Double> nodeRec:nodesLlista){
-            //Afegir aresta si ecuclidiana<40Km
-            //sino connectar indexNodeNou en el més proper
-            distMin = Double.MAX_VALUE;
-            for (int i = 0; i<nodesLlista.size(); i++){
-                if(nodeRec.ref != nodesLlista.get(i).ref){
-                    dist = haversine(nodeRec.info.getLatitud(), nodeRec.info.getLongitud(), nodesLlista.get(i).info.getLatitud(), nodesLlista.get(i).info.getLongitud());
-                    if(dist < 40){
-                        grafTest.afegirAresta(nodeRec,nodesLlista.get(i), dist);
-                    }else{
-                        distMin = dist;
-                        nodeDistMin = nodesLlista.get(i);
-                    }
+        //establim nodes a la hashlist del graf
+        for (String idActual : ids) {
+            grafTest.afegirNode(estacions.get(idActual).getIdEstacio(), estacions.get(idActual));
+        }
+        Double distMin, dist;
+        int nodeMin;
+        //establim arestes del graf
+        for (int i = 0; i<ids.size(); i++){
+            nodeMin=-1;
+            distMin=Double.MAX_VALUE;
+            for (int n = i+1; n<ids.size(); n++){
+                dist = haversine(grafTest.getHashValue(ids.get(i)).info.getLatitud(), grafTest.getHashValue(ids.get(i)).info.getLongitud(),
+                        grafTest.getHashValue(ids.get(n)).info.getLatitud(), grafTest.getHashValue(ids.get(n)).info.getLongitud());
+                if(dist<40.0){
+                    grafTest.afegirAresta(estacions.get(ids.get(i)).getIdEstacio(), estacions.get(ids.get(n)).getIdEstacio(), dist);
+                }else{
+                    distMin = dist;
+                    nodeMin=n;
                 }
             }
-            //Si el nodeNou no te cap aresta s'enllaça en nodeDistMin , if(!existeixAresta())
-            if(distMin!=Double.MAX_VALUE) grafTest.afegirAresta(nodeRec, nodeDistMin, distMin);
+            //si no te arestes veïnes inserir dist min
+            if(nodeMin!=-1 && grafTest.adjacents(ids.get(i)).size()==0)
+                grafTest.afegirAresta(ids.get(i), ids.get(nodeMin), distMin);
         }
-        //Graf construit
 
-        //System.out.println(grafTest.existeixAresta(grafTest.getHashValue(26945076), grafTest.getHashValue(11916675)));
-        //System.out.println(grafTest.valorAresta(grafTest.getHashValue(9165), grafTest.getHashValue(11916675)));
-        System.out.println(grafTest.camiOptim(9165,10833509,30));
-        System.out.println(grafTest.zonesDistMaxNoGarantida(9165, 30));
+        //--------Testing--------//
+        System.out.println(grafTest.existeixAresta(ids.get(0), ids.get(1)));
+        System.out.println(grafTest.existeixAresta(ids.get(0), ids.get(0)));
+        System.out.println(grafTest.existeixAresta(ids.get(0), ids.get(2)));
+        System.out.println(grafTest.valorAresta(ids.get(0), ids.get(1)));
+        System.out.println(grafTest.valorAresta(ids.get(0), ids.get(0)));
+        System.out.println(grafTest.valorAresta(ids.get(0), ids.get(2)));
+
+
+        System.out.println(grafTest.camiOptim("9142", "3386242", 100));
+        System.out.println(grafTest.zonesDistMaxNoGarantida("3701832", 300));
     }
 
     /**
