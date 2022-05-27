@@ -1,19 +1,4 @@
 public class Endoll {
-    /*
-        exemple:
-                "id": "20106805",
-                "nom": "TEST - INGETEAM EdRV 1",
-                "data": "2021-07-28 11:09:12",
-                "consum": "",
-                "carrer": "ETECNIC Energy & Mobility",
-                "ciutat": "Reus",
-                "estat": "lliure",
-                "temps": "0",
-                "potencia": "22",
-                "tipus": "CHAdeMO (DC)",
-                "latitud": "41.155346",
-                "longitud": "1.097065"
-         */
     private int id;
     private String nom, data, consum, carrer, ciutat, estat, temps, potencia, tipus;
 
@@ -42,24 +27,12 @@ public class Endoll {
         return data;
     }
 
-    public String getConsum() {
-        return consum;
-    }
-
     public String getCarrer() {
         return carrer;
     }
 
-    public String getCiutat() {
-        return ciutat;
-    }
-
     public String getEstat() {
         return estat;
-    }
-
-    public String getTemps() {
-        return temps;
     }
 
     public String getPotencia() {
@@ -68,9 +41,5 @@ public class Endoll {
 
     public void setPotencia(String potencia) {
         this.potencia = potencia;
-    }
-
-    public String getTipus() {
-        return tipus;
     }
 }

@@ -51,7 +51,7 @@ public class GrafGeneric<V, T, E> implements TADGraf<V,E>{
                     aux = aux.segFila;
                 }
             }else {
-                aux = hashtable.get(v2).primeraFila;;
+                aux = hashtable.get(v2).primeraFila;
                 while (aux != null) {
                     if (aux.refCol.equals(v1) && aux.refFila.equals(v2)) {
                         trobat = true;
@@ -78,7 +78,7 @@ public class GrafGeneric<V, T, E> implements TADGraf<V,E>{
                     aux = aux.segFila;
                 }
             }else {
-                aux = hashtable.get(v2).primeraFila;;
+                aux = hashtable.get(v2).primeraFila;
                 while (aux!=null){
                     if(aux.refCol.equals(v1) && aux.refFila.equals(v2)) value = aux.infoAresta;
                     aux = aux.segFila;
@@ -112,7 +112,7 @@ public class GrafGeneric<V, T, E> implements TADGraf<V,E>{
     }
 
     ///Algorismes
-    List<String> camiOptim(V identificador_origen, V
+    List<String> camiOptim(String identificador_origen, String
             identificador_desti, int autonomia){
 
         ArrayList<V> identifiers = new ArrayList<>();
@@ -130,6 +130,8 @@ public class GrafGeneric<V, T, E> implements TADGraf<V,E>{
             n++;
         }
 
+        if(dest == -1 || src ==-1) return null;
+
         int numNodes = hashtable.size();
         double[][] graph = new double[numNodes][numNodes];
         for (int u = 0; u < numNodes; u++){
@@ -138,68 +140,77 @@ public class GrafGeneric<V, T, E> implements TADGraf<V,E>{
                     graph[u][v] = (Double) valorAresta(identifiers.get(u), identifiers.get(v));
             }
         }
-
-        double dist[] = new double[numNodes]; // The output array. dist[i] will hold
-        // the shortest distance from src to i
-
-        // sptSet[i] will true if vertex i is included in shortest
-        // path tree or shortest distance from src to i is finalized
-        Boolean sptSet[] = new Boolean[numNodes];
-
-        // Initialize all distances as INFINITE and stpSet[] as false
+        double[] dist = new double[numNodes];
+        double[] distNodeNode = new double[numNodes];
+        Boolean[] sptSet = new Boolean[numNodes];
+        // Initi dist as MAX_VALUE ; init stpSet[] as false
         for (int i = 0; i < numNodes; i++) {
             dist[i] = Double.MAX_VALUE;
+            distNodeNode[i] = Double.MAX_VALUE;
             sptSet[i] = false;
         }
 
         // Distance of source vertex from itself is always 0
         dist[src] = 0;
+        distNodeNode[src] = 0;
         int[] parents = new int[numNodes];
-        for (int i = 0; i<numNodes; i++)//Every parent "points" src, finiching execution if path does not exist
-            parents[i] = src;
-        parents[src] = -1;
+        for (int i = 0; i<numNodes; i++)//Every parent "points" -2, finishing execution if path does not exist
+            parents[i] = -2;
+        parents[src] = -1;//Path exists
 
-        // Find shortest path for all vertices
+        // Find shortest path
         for (int count = 0; count < numNodes - 1; count++) {
-            // Pick the minimum distance vertex from the set of vertices
-            // not yet processed. u is always equal to src in first
-            // iteration.
+            // Min dist && not processed
             int u = minDistance(dist, sptSet, numNodes);
-            // Mark the picked vertex as processed
+            // Mark Vertex as processed
             sptSet[u] = true;
-            // Update dist value of the adjacent vertices of the
-            // picked vertex.
+            // Update dist value of the adjacent vertices
             for (int v = 0; v < numNodes; v++)
-                // Update dist[v] only if is not in sptSet, there is an
-                // edge from u to v, and total weight of path from src to
-                // v through u is smaller than current value of dist[v]
-                if (!sptSet[v] && graph[u][v] > 0 && dist[u] != Double.MAX_VALUE && (dist[u] + graph[u][v]) < dist[v] && (dist[u] + graph[u][v]) < autonomia){
+                // if graph[u][v]) <= autonomia
+                // filters those paths that can be traveled!
+                if (!sptSet[v] && graph[u][v] > 0 && dist[u] != Double.MAX_VALUE && (dist[u] + graph[u][v]) < dist[v] && graph[u][v] <= autonomia){
                     dist[v] = dist[u] + graph[u][v];
+                    distNodeNode[v] = graph[u][v];
                     parents[v] = u;//Crea el camí del nodes
                 }
         }
+
+        //Required on testing
         /*
-        System.out.println("Vertex \t\t Distance from Source");
+        System.out.println("Vertex \t\t Source Dist");
         for (int i = 0; i < numNodes; i++)
             System.out.println(identifiers.get(i) + " \t\t " + dist[i]);
         System.out.println("------------");*/
 
         LinkedList<String> camiMin = new LinkedList<>();
-        camiMin.addFirst(hashtable.get(identifiers.get(parents[dest])).info.toString());
-        while(parents[dest] != -1){
-            camiMin.addFirst(hashtable.get(identifiers.get(parents[dest])).info.toString());
-            dest = parents[dest];
+        Double autonomiaRec = ((double) autonomia);
+
+        if(parents[dest] == -2){
+            camiMin.add("NonExistent path!"); // path does not exist
+            return camiMin;
         }
+
+        do {
+            if(autonomiaRec < distNodeNode[dest]){
+                autonomiaRec = ((double) autonomia);
+                camiMin.addFirst(hashtable.get(identifiers.get(dest)).info.toString()+" Requereix recarrega!");
+            }else{
+                autonomiaRec = autonomiaRec - distNodeNode[dest];
+                camiMin.addFirst(hashtable.get(identifiers.get(dest)).info.toString());
+            }
+            dest = parents[dest];
+        }while(parents[dest] != -1);
+        camiMin.addFirst(hashtable.get(identifiers.get(dest)).info.toString());
 
         return camiMin;
     }
 
-    private int minDistance(double dist[], Boolean sptSet[], int numNodes)
+    private int minDistance(double[] dist, Boolean[] sptSet, int numNodes)
     {
-        // Initialize min value
+        // Init valor min
         double min = Double.MAX_VALUE;
         int min_index = -1;
-
+        //visita veins nos visitat i tria la distMin
         for (int v = 0; v < numNodes; v++)
             if (!sptSet[v] && dist[v] <= min) {
                 min = dist[v];
@@ -209,7 +220,7 @@ public class GrafGeneric<V, T, E> implements TADGraf<V,E>{
         return min_index;
     }
 
-    List<String> zonesDistMaxNoGarantida(V indentificador_origen,
+    List<String> zonesDistMaxNoGarantida(String indentificador_origen,
                                          int autonomia){
         //Floyd
         ArrayList<V> identifiers = new ArrayList<>();//Every position is a distance!
@@ -247,6 +258,9 @@ public class GrafGeneric<V, T, E> implements TADGraf<V,E>{
                 break;
             }
         }
+
+        if(index == -1) return null;
+
         LinkedList<String> distMax = new LinkedList<>();
         for (int i = 0; i<numNodes; i++){
             if(distances[index][i]<autonomia && index != i)

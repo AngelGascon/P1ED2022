@@ -4,10 +4,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class Testing {
+public class TestingPetit {
     public static void main(String[] args) {
         ///Llegint .json en la llibreria Org.json
-        String resourceName = "icaen.json";
+        String resourceName = "icaenPetit.json";
         InputStream is = Testing.class.getResourceAsStream(resourceName);
         if (is == null) {
             throw new NullPointerException("Cannot find resource file " + resourceName);
@@ -60,23 +60,23 @@ public class Testing {
         //Existeix aresta:
         System.out.println("ExisteixAresta: ");
         System.out.println("------------------------------------");
-        System.out.println("Existeix aresta entre: "+ids.get(0)+" i "+ids.get(1)+" ? "+grafTest.existeixAresta(ids.get(0), ids.get(1)));
-        System.out.println("Existeix aresta entre: "+ids.get(0)+" i "+ids.get(3)+" ? "+grafTest.existeixAresta(ids.get(0), ids.get(3)));
-        System.out.println("Existeix aresta entre: "+ids.get(3)+" i "+ids.get(3)+" ? "+grafTest.existeixAresta(ids.get(3), ids.get(3)));
-        System.out.println("Existeix aresta entre: "+ids.get(3)+" i "+ids.get(2)+" ? "+grafTest.existeixAresta(ids.get(3), ids.get(2)));
+        System.out.println("Existeix aresta entre: 9142, 36095402 -> resultat esperat false: "+grafTest.existeixAresta(ids.get(0), ids.get(1)));
+        System.out.println("Existeix aresta entre: 9142, 18510906 -> resultat esperat true: "+grafTest.existeixAresta(ids.get(0), ids.get(3)));
+        System.out.println("Existeix aresta entre: 18510906, 18510906 -> resultat esperat false: "+grafTest.existeixAresta(ids.get(3), ids.get(3)));
+        System.out.println("Existeix aresta entre: 18510906, 36096716 -> resultat esperat true: "+grafTest.existeixAresta(ids.get(3), ids.get(2)));
         //Valor aresta:
         System.out.println("ValorAresta:");
         System.out.println("------------------------------------");
-        System.out.println("Valor aresta entre: "+ids.get(3)+" i "+ids.get(2)+" ? "+grafTest.valorAresta(ids.get(3), ids.get(2)));
-        System.out.println("Valor aresta entre: "+ids.get(3)+" i "+ids.get(0)+" ? "+grafTest.valorAresta(ids.get(3), ids.get(0)));
-        System.out.println("Valor aresta entre: "+ids.get(0)+" i "+ids.get(3)+" ? "+grafTest.valorAresta(ids.get(0), ids.get(3)));
-        System.out.println("Valor aresta entre: "+ids.get(0)+" i "+ids.get(1)+" ? "+grafTest.valorAresta(ids.get(0), ids.get(1)));
+        System.out.println("Valor aresta entre: 18510906, 36096716 -> resultat esperat 7.10: "+grafTest.valorAresta(ids.get(3), ids.get(2)));
+        System.out.println("Valor aresta entre: 18510906, 9142 -> resultat esperat 82.67: "+grafTest.valorAresta(ids.get(3), ids.get(0)));
+        System.out.println("Valor aresta entre: 9142, 18510906 -> resultat esperat 82.67: "+grafTest.valorAresta(ids.get(0), ids.get(3)));
+        System.out.println("Valor aresta entre: 9142, 36095402 -> resultat esperat null: "+grafTest.valorAresta(ids.get(0), ids.get(1)));
         //CamiOptim
         System.out.println("Cami optim:");
         System.out.println("------------------------------------");
-        System.out.println("Resultat de 9142 -> 36095402 autonomia 83\n\t"+grafTest.camiOptim("9142", "36095402", 83));
-        System.out.println("Resultat de 9142 -> 36095402 autonomia 30\n\t"+grafTest.camiOptim("9142", "36095402", 30));
-        System.out.println("Resultat de 18510906 -> 36095402\n\t"+grafTest.camiOptim("18510906", "36095402", 8));
+        System.out.println("Resultat esperat (de 9142 a 36095402): 9142-> 18510906, recarrega!-> 36095402\n\t"+grafTest.camiOptim("9142", "36095402", 83));
+        System.out.println("Resultat esperat: []\n\t"+grafTest.camiOptim("9142", "36095402", 30));
+        System.out.println("Resultat esperat: 18510906 -> 36095402\n\t"+grafTest.camiOptim("18510906", "36095402", 8));
         //DistMaxGarantida
         System.out.println("DistMax garantida:");
         System.out.println("------------------------------------");

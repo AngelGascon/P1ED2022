@@ -1,22 +1,6 @@
 import java.util.LinkedList;
 
 public class Estacio {
-    /*
-    exemple:
-            "id": "20106805",
-            "id_estacio": "35664709",
-            "nom": "TEST - INGETEAM EdRV 1",
-            "data": "2021-07-28 11:09:12",
-            "consum": "",
-            "carrer": "ETECNIC Energy & Mobility",
-            "ciutat": "Reus",
-            "estat": "lliure",
-            "temps": "0",
-            "potencia": "22",
-            "tipus": "CHAdeMO (DC)",
-            "latitud": "41.155346",
-            "longitud": "1.097065"
-     */
     private String idEstacio;
     private LinkedList<Endoll> endolls;
     private Endoll maxPotencia;
